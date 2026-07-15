@@ -26,6 +26,23 @@ We have successfully built and verified the complete end-to-end Machine Learning
     *   *Why this matters:* Fundus images from different clinics vary wildly in illumination and color balance. Our preprocessing eliminates camera-specific artifacts, forcing the neural network to focus *strictly* on biological structures (vascular trees, optic disc) rather than learning color shortcuts.
 3.  **Validated Training Loop:** Successfully trained a ResNet34 model on the preprocessed baseline data, establishing a clean, reproducible evaluation matrix (Confusion Matrix / Top Losses).
 
+   ### 📊 Training Results & Metrics
+Our optimized ResNet34 pipeline achieved a final accuracy of **84.21%** on the validation subset. Below are the training metrics and evaluation plots from the verified run:
+
+#### Training Loss & Learning Rate Selection
+The learning rate finder successfully isolated the optimal trajectory valley ($2.88 \times 10^{-3}$), leading to a highly stable convergence without overfitting:
+![Training Loss Curve](images/loss_curve.png)
+
+#### Confusion Matrix
+The balanced distribution demonstrates that the Ben-Graham preprocessing forced the network to learn legitimate morphological features rather than shortcut artifacts:
+![Confusion Matrix](images/confusion_matrix.png)
+
+## 📊 Dataset & Reproducibility
+To ensure full reproducibility of this Proof of Concept (PoC), the pipeline is built using the following publicly available dataset:
+* **Dataset Name:** Ocular Disease Recognition (ODIR-5K)
+* **Source:** Available on Kaggle via [andrewmvd/ocular-disease-recognition-odir5k](https://www.kaggle.com/datasets/andrewmvd/ocular-disease-recognition-odir5k)
+* **Usage in this project:** Healthy control samples ("N") and disease samples ("D") were utilized to validate the infrastructure and test the Ben-Graham contrast-normalization pipeline.
+
 ## 🗺️ Roadmap & Next Steps
 - [x] Establish Deep Learning infrastructure and dummy-data validation.
 - [x] Implement medical-grade image preprocessing (Ben-Graham).
@@ -33,16 +50,14 @@ We have successfully built and verified the complete end-to-end Machine Learning
 - [ ] **Architecture Upgrade:** Transition from ResNet34 to ResNet50 or Vision Transformers (ViT) to capture micro-tortuosity in vessels.
 - [ ] **API Deployment:** Wrap the trained weights (`.pkl`) in a lightweight FastAPI inference endpoint.
 
+
+
 ## 🤝 Call for Collaboration / Data Providers
 The pipeline is ready. **We are currently seeking researchers, clinicians, or institutions willing to share anonymized fundus or OCT datasets linked to ICD-10 F90 (ADHD) or F84 (Autism) diagnoses.** 
 
 If you support Open Science and want to collaborate on bringing objective neurodivergent screening to life, please reach out or open an issue!
 
-## 📊 Dataset & Reproducibility
-To ensure full reproducibility of this Proof of Concept (PoC), the pipeline is built using the following publicly available dataset:
-* **Dataset Name:** Ocular Disease Recognition (ODIR-5K)
-* **Source:** Available on Kaggle via [andrewmvd/ocular-disease-recognition-odir5k](https://www.kaggle.com/datasets/andrewmvd/ocular-disease-recognition-odir5k)
-* **Usage in this project:** Healthy control samples ("N") and disease samples ("D") were utilized to validate the infrastructure and test the Ben-Graham contrast-normalization pipeline.
+
 
 
 ## 🧠 Acknowledgments & Inspiration
