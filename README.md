@@ -28,6 +28,7 @@ We have successfully built and verified the complete end-to-end Machine Learning
 
    ### 📊 Training Results & Metrics
 Our optimized ResNet34 pipeline achieved a final accuracy of **84.21%** on the validation subset. Below are the training metrics and evaluation plots from the verified run:
+![training_cycles](images/training_cycles.png)
 
 #### Training Loss & Learning Rate Selection
 The learning rate finder successfully isolated the optimal trajectory valley ($2.88 \times 10^{-3}$), leading to a highly stable convergence without overfitting:
