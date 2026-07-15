@@ -38,5 +38,22 @@ The pipeline is ready. **We are currently seeking researchers, clinicians, or in
 
 If you support Open Science and want to collaborate on bringing objective neurodivergent screening to life, please reach out or open an issue!
 
+## 📊 Dataset & Reproducibility
+To ensure full reproducibility of this Proof of Concept (PoC), the pipeline is built using the following publicly available dataset:
+* **Dataset Name:** Ocular Disease Recognition (ODIR-5K)
+* **Source:** Available on Kaggle via [andrewmvd/ocular-disease-recognition-odir5k](https://www.kaggle.com/datasets/andrewmvd/ocular-disease-recognition-odir5k)
+* **Usage in this project:** Healthy control samples ("N") and disease samples ("D") were utilized to validate the infrastructure and test the Ben-Graham contrast-normalization pipeline.
+
+
+## 🧠 Acknowledgments & Inspiration
+This project is deeply inspired by pioneering research in the field of retinal biomarkers for neurodevelopmental conditions. We highly acknowledge and build upon the following works:
+
+* **Edward Kang's "RetinaMind" (2026)** - Award-winning project focusing on advanced retinal screening and molecular biomarkers. 
+  * [Explore the RetinaMind Project / Paper](https://www.retinamind.com/)
+* **The Chinese University of Hong Kong (CUHK)** - Breakthrough research on Automatic Retinal Image Analysis (ARIA) technology led by Prof. Benny Zee, proving the correlation between retinal structures and neurodevelopmental traits.
+  * [Read the CUHK ARIA Research Paper / Institute Page](https://www2.ccrb.cuhk.edu.hk/web/innovation-and-entrepreneurship/automatic-retinal-image-analysis-system/)
+
+We highly respect their contributions and aim to expand upon their foundations to bring open-source, objective screening tools to families worldwide.
+
 ---
 *Developed with logic, passion, and AI assistance.*
