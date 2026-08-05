@@ -2,6 +2,58 @@
 
 **An open-source machine learning pipeline for objective ADHD and Autism screening via retinal fundus images.**
 
+## 🚀 Update (August 2026): Breakthrough – Model v1.0 is Live!
+
+We successfully trained our first Proof of Concept (PoC) model on an exclusive, highly curated clinical dataset. The results demonstrate that detecting neurological biomarkers for ADHD and ASD via retinal fundus imaging is not only possible, but highly accurate when using the right preprocessing techniques.
+
+---
+
+### 📊 The Dataset
+We obtained a specialized dataset consisting of 353 retinal scans from children and adolescents, distributed as follows:
+* **Normal (Control Group):** 204 images
+* **ASD (Autism Spectrum Disorder):** 108 images
+* **ADHD (Attention Deficit Hyperactivity Disorder):** 41 images
+
+---
+
+### ⚙️ Preprocessing & Architecture
+To combat the challenges of a "small data" environment and severe class imbalance, we built a robust `PyTorch` / `fastai` pipeline:
+
+* **On-the-fly Ben-Graham Filter:** Integrated OpenCV directly into the fastai `DataBlock` to execute Local Contrast Enhancement during loading. This dramatically isolates the retinal vasculature and suppresses background noise.
+* **Aggressive Data Augmentation:** Implemented reflection padding, dynamic rotations (up to 15°), and vertical flips to artificially expand the dataset and prevent overfitting.
+* **Weighted Loss Function:** To counteract class imbalance (especially for ADHD), we implemented a custom `CrossEntropyLossFlat` with heavily adjusted class weights (ADHD penalty: ~3.14, ASD: ~1.12, Normal: ~0.56).
+* **Transfer Learning & LR Finder:** Fine-tuned a pre-trained **ResNet50** architecture over 10 epochs using dynamic learning rates determined via the `lr_find` utility.
+
+
+
+![Learning Rate Finder](HIER_BILD_1_DRAG_AND_DROP_LINK_EINFUEGEN)
+<img width="381" height="291" alt="Bildschirmfoto vom 2026-08-05 20-58-35" src="https://github.com/user-attachments/assets/0447e000-fda9-4286-97db-0b78c1b7f20b" />
+
+---
+
+### 🏆 Results & Validation
+The model achieved an outstanding **Validation Accuracy of 97.1%**. 
+
+![Training Metrics and Confusion Matrix](HIER_BILD_2_DRAG_AND_DROP_LINK_EINFUEGEN)
+<img width="353" height="523" alt="Bildschirmfoto vom 2026-08-05 20-57-42" src="https://github.com/user-attachments/assets/b2d420db-c30c-49b2-b7d8-cba6de6314ab" />
+
+
+Our Confusion Matrix demonstrates that the model successfully learned actual physical biomarkers rather than defaulting to the majority class:
+
+| Actual \ Predicted | ADHD | ASD | Normal |
+| :--- | :--- | :--- | :--- |
+| **ADHD** | **10** | 1 | 0 |
+| **ASD** | 0 | **24** | 0 |
+| **Normal** | 1 | 0 | **34** |
+
+* **ASD Detection:** 100% accuracy on the validation set (24/24).
+* **ADHD Detection:** Successfully identified 10 out of 11 cases, despite being the smallest class in the dataset.
+
+---
+
+### 💾 Model Availability
+The finalized model, including architecture and learned weights, has been exported as `retina_model_v1.pkl`. This allows for direct, out-of-the-box inference on new retinal images without needing to retrain the network.
+
 ---
 
 ## 🌟 The Vision
